@@ -1,0 +1,108 @@
+﻿<Window x:Class="Collegeschedule.ScheduleEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование записи" Height="500" Width="320"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Background="#F9F9F9" FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="LabelStyle">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#666666"/>
+            <Setter Property="Margin" Value="2,8,0,2"/>
+        </Style>
+
+        <Style TargetType="Control" x:Key="InputStyle">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5,0"/>
+        </Style>
+
+        <Style x:Key="SaveButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Группа" Style="{StaticResource LabelStyle}" Margin="2,0,0,2"/>
+            <ComboBox x:Name="comboBoxGroup" Style="{StaticResource InputStyle}"/>
+
+            <TextBlock Text="Предмет" Style="{StaticResource LabelStyle}"/>
+            <ComboBox x:Name="comboBoxSubject" Style="{StaticResource InputStyle}"/>
+
+            <TextBlock Text="Преподаватель" Style="{StaticResource LabelStyle}"/>
+            <ComboBox x:Name="comboBoxTeacher" Style="{StaticResource InputStyle}"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                    <TextBlock Text="День недели" Style="{StaticResource LabelStyle}"/>
+                    <ComboBox x:Name="comboBoxDay" Style="{StaticResource InputStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                    <TextBlock Text="Номер пары" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="textLesson" Style="{StaticResource InputStyle}"/>
+                </StackPanel>
+            </Grid>
+
+            <Border BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Margin="0,15,0,0" Padding="0,10,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Начало" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBox x:Name="startHour" Width="35" MaxLength="2" Text="08" TextAlignment="Center" Style="{StaticResource InputStyle}"/>
+                            <TextBlock Text=":" VerticalAlignment="Center" Margin="3,0"/>
+                            <TextBox x:Name="startMinute" Width="35" MaxLength="2" Text="30" TextAlignment="Center" Style="{StaticResource InputStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Конец" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBox x:Name="endHour" Width="35" MaxLength="2" Text="10" TextAlignment="Center" Style="{StaticResource InputStyle}"/>
+                            <TextBlock Text=":" VerticalAlignment="Center" Margin="3,0"/>
+                            <TextBox x:Name="endMinute" Width="35" MaxLength="2" Text="20" TextAlignment="Center" Style="{StaticResource InputStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <TextBlock Text="Кабинет" Style="{StaticResource LabelStyle}"/>
+            <TextBox x:Name="textAuditory" Style="{StaticResource InputStyle}"/>
+
+            <Button Content="Сохранить изменения" 
+                    Height="40" 
+                    Margin="0,25,0,0" 
+                    Click="Save_Click" 
+                    Style="{StaticResource SaveButtonStyle}">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.1"/>
+                </Button.Effect>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
